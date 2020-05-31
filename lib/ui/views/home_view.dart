@@ -82,12 +82,12 @@ class _HomeViewState extends State<HomeView> {
                                 itemBuilder: (buildContext, index) =>
                                   Padding(
                                     padding: EdgeInsets.only(
-                                      left: 16.0, right: 16.0,
+                                      left: 20.0, right: 20.0,
                                       top: 24.0, bottom: 24.0
                                     ),
                                     child:ProductCard(
                                       productDetails: products[index],
-                                      cardNum: index,
+                                      cardNum: index
                                     )));
                           } else {
                             return Center(

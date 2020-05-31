@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/core/models/product_model.dart';
 import 'package:flutter_practice/ui/views/product_details.dart';
+import 'package:palette_generator/palette_generator.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final Product productDetails;
   final int cardNum;
   ProductCard({@required this.productDetails, @required this.cardNum});
+  _ProductCard createState() => _ProductCard();
+}
+
+class _ProductCard extends State<ProductCard> {
+  Color color = Colors.amber;
+
+  @override
+  void initState() {
+    super.initState();
+    _getImagePalette(AssetImage('assets/images/image2.jpg'));
+  }
+
+  _getImagePalette (AssetImage image) async {
+    final PaletteGenerator paletteGenerator = await PaletteGenerator
+        .fromImageProvider(image);
+    setState(() {
+      color = paletteGenerator.dominantColor.color;      
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +49,10 @@ class ProductCard extends StatelessWidget {
                           blurRadius: 8)
                     ],
                     borderRadius: BorderRadius.circular(30)),
-                    child: Container(
+                    child: Container( 
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.red, Colors.transparent] ,
+                          colors: [ color, Colors.transparent ],
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter
                         ),
