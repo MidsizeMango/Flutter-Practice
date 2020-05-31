@@ -28,7 +28,6 @@ class _HomeViewState extends State<HomeView> {
               onPressed: () =>
                   {Navigator.pushNamed(context, Constants.CART_ITEMS)},
             ),
-
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -41,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
                   context: context,
                   builder: (BuildContext buildContext) {
                     return new Container(
-                      color: Colors.transparent, 
+                      color: Colors.transparent,
                       child: new Container(
                           decoration: new BoxDecoration(
                               color: Colors.white,
@@ -55,40 +54,51 @@ class _HomeViewState extends State<HomeView> {
             child: Icon(Icons.add)),
         body: Container(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text('Explore', style: TextStyle(
-                    fontSize: 32.0, fontWeight: FontWeight.bold)),
-                ),
-                CategorySelector(
-                  categories: ['Cakes', 'Chocolates', 'Cookies', 'Biscuits']
-                )
-              /* Container(
-              child: StreamBuilder(
-                stream: productProvider.fetchProductsAsStream(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    products = snapshot.data.documents
-                        .map<Product>(
-                            (doc) => Product.fromMap(doc.data, doc.documentID))
-                        .toList();
-                    return ListView.builder(
-                        itemCount: products.length,
-                        itemBuilder: (buildContext, index) =>
-                            ProductCard(productDetails: products[index]));
-                  } else {
-                    return Center(
-                        child: CircularProgressIndicator(
-                      key: Key("circularProgressIndictor"),
-                      backgroundColor: Colors.orange,
-                    ));
-                  }
-                },
-          )) */
-        ])),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text('Explore',
+                    style:
+                        TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold)),
+              ),
+              CategorySelector(
+                  categories: ['Cakes', 'Chocolates', 'Cookies', 'Biscuits']),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.60,
+                  child: StreamBuilder(
+                        stream: productProvider.fetchProductsAsStream(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            products = snapshot.data.documents
+                                .map<Product>((doc) =>
+                                    Product.fromMap(doc.data, doc.documentID))
+                                .toList();
+                            return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
+                                itemCount: products.length - 1,
+                                itemBuilder: (buildContext, index) =>
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 16.0, right: 16.0,
+                                      top: 24.0, bottom: 24.0
+                                    ),
+                                    child:ProductCard(
+                                      productDetails: products[index],
+                                      cardNum: index,
+                                    )));
+                          } else {
+                            return Center(
+                                child: CircularProgressIndicator(
+                              key: Key("circularProgressIndictor"),
+                              backgroundColor: Colors.orange,
+                            ));
+                          }
+                        },
+                      ))
+            ])),
         bottomNavigationBar: AnimatedBottomBar(onBarTap: (index) {
           print(index);
         }));

@@ -4,61 +4,43 @@ import 'package:flutter_practice/ui/views/product_details.dart';
 
 class ProductCard extends StatelessWidget {
   final Product productDetails;
-  ProductCard({@required this.productDetails});
+  final int cardNum;
+  ProductCard({@required this.productDetails, @required this.cardNum});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => 
-            ProductDetails(productDetails: productDetails))
-          )
-        },
-        child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 5,
-              child: Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Column(
-                    children: [
-                      Hero(
-                        tag: productDetails.productId,
-                        child: Image.asset(
-                          'assets/images/image1.jpg',
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(productDetails.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 22,
-                                      fontStyle: FontStyle.italic)),
-                              Text(
-                                '\$${productDetails.price}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 22,
-                                    color: Colors.orangeAccent),
-                              ),
-                              Text(
-                                productDetails.category,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 22,
-                                    color: Colors.green),
-                              ),
-                            ],
-                          ))
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.75,
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.95,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/image2.jpg'),
+                      fit: BoxFit.fill
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, 5.0),
+                          blurRadius: 8)
                     ],
-                  )),
-            )));
+                    borderRadius: BorderRadius.circular(30)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.red, Colors.transparent] ,
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter
+                        ),
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                    ),
+                ))
+          ],
+        ));
   }
 }
