@@ -29,7 +29,7 @@ class _MyApp extends State<MyApp> {
           initialRoute: Constants.INITIAL_PAGE,
           theme: ThemeData(
             fontFamily: 'Montserrat',
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.yellow,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           onGenerateRoute: Router.generateRoute,

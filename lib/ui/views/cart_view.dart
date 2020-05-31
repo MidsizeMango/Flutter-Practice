@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/core/models/cart_model.dart';
 import 'package:flutter_practice/database/dbprovider.dart';
+import 'package:flutter_practice/ui/widgets/cart_card.dart';
 import 'package:toast/toast.dart';
-
-import 'cart_card.dart';
 
 class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0;
-    bool areItemsAvailable = false;
     return Scaffold(
         appBar: AppBar(),
         body: Container(

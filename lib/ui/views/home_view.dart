@@ -3,7 +3,8 @@ import 'package:flutter_practice/components/animated_custom_bottombar.dart';
 import 'package:flutter_practice/core/models/product_model.dart';
 import 'package:flutter_practice/core/viewmodels/product_crud_model.dart';
 import 'package:flutter_practice/ui/views/add_product.dart';
-import 'package:flutter_practice/ui/views/product_card.dart';
+import 'package:flutter_practice/ui/widgets/category_selector.dart';
+import 'package:flutter_practice/ui/widgets/product_card.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 
@@ -18,17 +19,20 @@ class _HomeViewState extends State<HomeView> {
     final productProvider = Provider.of<ProductCRUDModel>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Home'),
+          title: Text('Home', style: TextStyle(fontSize: 22.0)),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           actions: [
             IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () =>
                   {Navigator.pushNamed(context, Constants.CART_ITEMS)},
-            )
+            ),
+
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.amber.shade800,
+            backgroundColor: Colors.amber.shade800,
             onPressed: () {
               //Navigator.pushNamed(context, Constants.PRODUCTS);
               showModalBottomSheet(
@@ -37,9 +41,7 @@ class _HomeViewState extends State<HomeView> {
                   context: context,
                   builder: (BuildContext buildContext) {
                     return new Container(
-                      color: Colors
-                          .transparent, //could change this to Color(0xFF737373),
-                      //so you don't have to change MaterialApp canvasColor
+                      color: Colors.transparent, 
                       child: new Container(
                           decoration: new BoxDecoration(
                               color: Colors.white,
@@ -52,27 +54,41 @@ class _HomeViewState extends State<HomeView> {
             },
             child: Icon(Icons.add)),
         body: Container(
-            child: StreamBuilder(
-          stream: productProvider.fetchProductsAsStream(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              products = snapshot.data.documents
-                  .map<Product>(
-                      (doc) => Product.fromMap(doc.data, doc.documentID))
-                  .toList();
-              return ListView.builder(
-                  itemCount: products.length,
-                  itemBuilder: (buildContext, index) =>
-                      ProductCard(productDetails: products[index]));
-            } else {
-              return Center(
-                  child: CircularProgressIndicator(
-                key: Key("circularProgressIndictor"),
-                backgroundColor: Colors.orange,
-              ));
-            }
-          },
-        )),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text('Explore', style: TextStyle(
+                    fontSize: 32.0, fontWeight: FontWeight.bold)),
+                ),
+                CategorySelector(
+                  categories: ['Cakes', 'Chocolates', 'Cookies', 'Biscuits']
+                )
+              /* Container(
+              child: StreamBuilder(
+                stream: productProvider.fetchProductsAsStream(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    products = snapshot.data.documents
+                        .map<Product>(
+                            (doc) => Product.fromMap(doc.data, doc.documentID))
+                        .toList();
+                    return ListView.builder(
+                        itemCount: products.length,
+                        itemBuilder: (buildContext, index) =>
+                            ProductCard(productDetails: products[index]));
+                  } else {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      key: Key("circularProgressIndictor"),
+                      backgroundColor: Colors.orange,
+                    ));
+                  }
+                },
+          )) */
+        ])),
         bottomNavigationBar: AnimatedBottomBar(onBarTap: (index) {
           print(index);
         }));
