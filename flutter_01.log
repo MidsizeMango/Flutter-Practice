@@ -1,0 +1,75 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter pub get
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = 'D:\Android Studio Projects\Flutter-Practice\.flutter-plugins' (OS Error: Access is denied.
+, errno = 5)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:645:7)
+#1      _File.openSync (dart:io/file_impl.dart:489:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:614:31)
+#3      _File.writeAsStringSync (dart:io/file_impl.dart:638:5)
+#4      ForwardingFile.writeAsStringSync (package:file/src/forwarding/forwarding_file.dart:154:16)
+#5      _writeFlutterPluginsListLegacy (package:flutter_tools/src/plugins.dart:484:15)
+#6      refreshPluginsList (package:flutter_tools/src/plugins.dart:1054:30)
+#7      FlutterProject.ensureReadyForPlatformSpecificTooling (package:flutter_tools/src/project.dart:210:5)
+#8      PackagesGetCommand.runCommand (package:flutter_tools/src/commands/packages.dart:128:23)
+<asynchronous suspension>
+#9      FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:723:18)
+#10     _rootRunUnary (dart:async/zone.dart:1192:38)
+#11     _CustomZone.runUnary (dart:async/zone.dart:1085:19)
+#12     _FutureListener.handleValue (dart:async/future_impl.dart:141:18)
+#13     Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:682:45)
+#14     Future._propagateToListeners (dart:async/future_impl.dart:711:32)
+#15     Future._completeWithValue (dart:async/future_impl.dart:526:5)
+#16     Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:556:7)
+#17     _rootRun (dart:async/zone.dart:1184:13)
+#18     _CustomZone.run (dart:async/zone.dart:1077:19)
+#19     _CustomZone.runGuarded (dart:async/zone.dart:979:7)
+#20     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1019:23)
+#21     _microtaskLoop (dart:async/schedule_microtask.dart:43:21)
+#22     _startMicrotaskLoop (dart:async/schedule_microtask.dart:52:5)
+#23     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:118:13)
+#24     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:169:5)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, v1.17.1, on Microsoft Windows [Version 10.0.18363.720], locale en-IN)
+    • Flutter version 1.17.1 at C:\Flutter\flutter
+    • Framework revision f7a6a7906b (2 weeks ago), 2020-05-12 18:39:00 -0700
+    • Engine revision 6bc433c6b6
+    • Dart version 2.8.2
+
+[!] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
+    • Android SDK at D:\Android\SDK (Windows)
+    • Platform android-R, build-tools 29.0.3
+    • ANDROID_HOME = D:\Android\SDK (Windows)
+    • ANDROID_SDK_ROOT = D:\Android\SDK (Windows)
+    • Java binary at: D:\Android\Android Studio (Windows)\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b04)
+    ✗ Android license status unknown.
+      Try re-installing or updating your Android SDK Manager.
+      See https://developer.android.com/studio/#downloads or visit visit https://flutter.dev/docs/get-started/install/windows#android-setup for detailed instructions.
+
+[✓] Android Studio (version 3.6)
+    • Android Studio at D:\Android\Android Studio (Windows)
+    • Flutter plugin version 45.1.1
+    • Dart plugin version 192.7761
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b04)
+
+[✓] VS Code (version 1.45.1)
+    • VS Code at C:\Users\prasa\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.10.2
+
+[!] Connected device
+    ! No devices available
+
+! Doctor found issues in 2 categories.
+```

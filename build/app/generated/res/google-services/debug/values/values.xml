@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">561844823414-bt8c17q6qaa4obkgn07olgt5ov6pi1aa.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://flutter-practice-2867b.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">561844823414</string>
+    <string name="google_api_key" translatable="false">AIzaSyBVGHqq-j4LXZYd6NpExn2KhB-XlVLCnLk</string>
+    <string name="google_app_id" translatable="false">1:561844823414:android:845acab3740ad797a1c657</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBVGHqq-j4LXZYd6NpExn2KhB-XlVLCnLk</string>
+    <string name="google_storage_bucket" translatable="false">flutter-practice-2867b.appspot.com</string>
+    <string name="project_id" translatable="false">flutter-practice-2867b</string>
+</resources>
