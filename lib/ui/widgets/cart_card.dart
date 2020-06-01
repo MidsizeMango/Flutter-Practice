@@ -3,7 +3,8 @@ import 'package:flutter_practice/core/models/cart_model.dart';
 
 class CartCard extends StatefulWidget {
   final Cart cartDetails;
-  CartCard({@required this.cartDetails});
+  final VoidCallback onDelete;
+  CartCard({Key key, @required this.cartDetails, @required this.onDelete}): super(key: key);
   _CartCard createState() => _CartCard();
 }
 
@@ -54,12 +55,20 @@ class _CartCard extends State<CartCard> {
                         color: Colors.orangeAccent),
                   ),
                   SizedBox(height: 10.0),
-                  Text(
+                  /* Text(
                     'Quantity: ${widget.cartDetails.itemCount.toString()}',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18),
-                  ),
+                  ), */
+                  RaisedButton(
+                    onPressed: () async => {
+                      widget.onDelete()
+                    },
+                    shape: StadiumBorder(),
+                    color: Colors.red,
+                    child: Text('Remove from Cart', style: TextStyle(color: Colors.white)),
+                  )
                 ],
               ))
         ],

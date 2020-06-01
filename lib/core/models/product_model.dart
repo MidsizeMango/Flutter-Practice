@@ -8,6 +8,7 @@ class Product {
   String weight;
   String quantity;
   List<String> images;
+  String dateTime;
 
   Product(
       {this.productId,

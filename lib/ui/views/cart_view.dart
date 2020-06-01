@@ -5,6 +5,8 @@ import 'package:flutter_practice/ui/widgets/cart_card.dart';
 import 'package:toast/toast.dart';
 
 class CartView extends StatefulWidget {
+  final List<Cart> cartItems;
+  CartView({this.cartItems});
   _CartView createState() => _CartView();
 }
 
@@ -16,6 +18,7 @@ class _CartView extends State<CartView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          title: Text('Your Added Items'),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -25,13 +28,11 @@ class _CartView extends State<CartView> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     cartItems = snapshot.data;
-                    totalPrice = cartItems
-                        .map((item) => double.parse(item.productPrice))
-                        .reduce((value, element) => value + element);
                     return ListView.builder(
                         itemCount: cartItems.length,
-                        itemBuilder: (buildContext, index) =>
-                            CartCard(cartDetails: cartItems[index]));
+                        itemBuilder: (buildContext, index) => CartCard(
+                            cartDetails: cartItems[index],
+                            onDelete: () => removeItem(index)));
                   } else {
                     return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,5 +102,12 @@ class _CartView extends State<CartView> {
             ]),
           ),
         ));
+  }
+
+  void removeItem(int index) {
+    setState(() {
+      DBProvider.dbProvider.removeItemFromCart(cartItems[index].cartId);
+      cartItems.removeAt(index);
+    });
   }
 }

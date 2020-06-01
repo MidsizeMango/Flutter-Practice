@@ -6,7 +6,7 @@ import 'package:flutter_practice/core/services/firestore_api.dart';
 import '../../locator.dart';
 
 class OrderCRUDModel extends ChangeNotifier {
-  FirestoreAPI _firestoreAPI = locator<FirestoreAPI>();
+  FirestoreAPI _firestoreAPI = FirestoreAPI('orders');
 
   List<Order> orders;
 
@@ -18,34 +18,30 @@ class OrderCRUDModel extends ChangeNotifier {
     return orders;
   }
 
-  Future<List<Order>> fetchOrdersForUser(String id) async {
-    var result = await _firestoreAPI.getDataBasedOnCondition("userId", id);
+  Future<List<Order>> fetchOrdersForUser(String userId) async {
+    var result = await _firestoreAPI.getDocumentsCollection(userId, 'orders');
     List<Order> userOrders = result.documents
         .map((doc) => Order.fromMap(doc.data, doc.documentID))
         .toList();
     return userOrders;
   }
 
-  Stream<QuerySnapshot> fetchOrdersAsStream() {
-    return _firestoreAPI.streamDataCollection();
-  }
-
-  Future<Order> getOrderById(String id) async {
-    var doc = await _firestoreAPI.getDocumentById(id);
+  Future<Order> getOrderById(String userId, String id) async {
+    var doc = await _firestoreAPI.getDocumentCollectionById(userId, 'order', id);
     return Order.fromMap(doc.data, doc.documentID);
   }
 
-  Future removeOrder(String id) async {
-    await _firestoreAPI.removeDocument(id);
+  Future removeOrder(String id, String userId) async {
+    await _firestoreAPI.removeDocumentCollection(userId, 'order', id);
     return;
   }
 
-  Future updateOrder(Order data, String id) async {
-    await _firestoreAPI.updateDocument(data.toJson(), id);
+  Future updateOrder(Order data, String id, String userId) async {
+    await _firestoreAPI.updateDocumentToCollection('order', data.toJson(), userId, id);
   }
 
-  Future addOrder(Order data) async {
-    await _firestoreAPI.addDocument(data.toJson());
+  Future addOrder(Order data, String userId) async {
+    await _firestoreAPI.addDocumentToCollection(userId, 'orders', data.toJson());
   }
 
   void onChange() {

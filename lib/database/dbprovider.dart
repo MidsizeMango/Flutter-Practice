@@ -56,8 +56,8 @@ class DBProvider {
     Map<String, dynamic> newCartData = cartData.map((val) => Cart.fromMap(val)).toList()[0].toMap();
     String cartId = newCartData['cartId'];
     int newItemCount = newCartData['itemCount'] + 1;
-    double price = newCartData['productPrice'];
-    double newPrice = price + (price / newItemCount);
+    double price = double.parse(newCartData['productPrice']);
+    double newPrice = price + (price / (newItemCount - 1));
 
     var res = await db.execute(
       'UPDATE $CART_DATA SET itemCount = $newItemCount, productPrice=\'${newPrice.toString()}\' WHERE cartId = \'$cartId\''
@@ -85,12 +85,12 @@ class DBProvider {
     return res;
   }
 
-  deleteItemFromCart(cartId) async {
+  removeItemFromCart(cartId) async {
     final db = await database;
     await db.delete(CART_DATA, where: "cartId=?", whereArgs: [cartId]);
   }
 
-  deleteAllItemsFromCart() async {
+  removeAllItemsFromCart() async {
     final db = await database;
     await db.rawDelete("Delete * from $CART_DATA");
   }

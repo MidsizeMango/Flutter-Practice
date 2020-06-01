@@ -9,6 +9,14 @@ class FirestoreAPI {
     collectionReference = _firestoreDB.collection(path);
   }
 
+  Future<DocumentReference> addDocument(Map data) {
+    return collectionReference.add(data);
+  }
+
+  Future<void> updateDocument(Map data, String id) {
+    return collectionReference.document(id).updateData(data);
+  }
+
   Future<QuerySnapshot> getDataCollection() {
     return collectionReference.getDocuments();
   }
@@ -25,15 +33,27 @@ class FirestoreAPI {
     return collectionReference.document(id).get();
   }
 
-  Future<DocumentReference> addDocument(Map data) {
-    return collectionReference.add(data);
-  }
-
-  Future<void> updateDocument(Map data, String id) {
-    return collectionReference.document(id).updateData(data);
-  }
-
   Future<void> removeDocument(String id) {
     return collectionReference.document(id).delete();
+  }
+
+  Future<DocumentReference> addDocumentToCollection(String docId, String collectionName, Map data) {
+    return collectionReference.document(docId).collection(collectionName).add(data);
+  }
+
+  Future<QuerySnapshot> getDocumentsCollection(String id, String collectionName) {
+    return collectionReference.document(id).collection(collectionName).getDocuments();
+  }
+
+  Future<DocumentSnapshot> getDocumentCollectionById(String id, String collectionName, String docId) {
+    return collectionReference.document(id).collection(collectionName).document(docId).get();
+  }
+
+  Future<DocumentReference> updateDocumentToCollection(String collectionName, Map data, String id, String docId) {
+    return collectionReference.document(id).collection(collectionName).document(docId).updateData(data);
+  }
+
+  Future<void> removeDocumentCollection(String id, String collectionName, String docId) {
+    return collectionReference.document(id).collection(collectionName).document(docId).delete();
   }
 }

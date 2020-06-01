@@ -6,7 +6,7 @@ import 'core/services/firestore_api.dart';
 GetIt locator = GetIt();
 
 void setupLocator() {
-  locator.registerLazySingleton(() => FirestoreAPI('products'));
+  //locator.registerLazySingleton(() => FirestoreAPI('products'));
   locator.registerLazySingleton(() => ProductCRUDModel());
   locator.registerLazySingleton(() => OrderCRUDModel());
 }

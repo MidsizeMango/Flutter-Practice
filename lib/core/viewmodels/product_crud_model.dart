@@ -6,7 +6,7 @@ import 'package:flutter_practice/core/services/firestore_api.dart';
 import '../../locator.dart';
 
 class ProductCRUDModel extends ChangeNotifier {
-  FirestoreAPI _firestoreAPI = locator<FirestoreAPI>();
+  FirestoreAPI _firestoreAPI = FirestoreAPI('products');
 
   List<Product> products;
 
