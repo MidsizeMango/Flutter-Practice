@@ -4,18 +4,27 @@ import 'package:flutter_practice/database/dbprovider.dart';
 import 'package:flutter_practice/ui/widgets/cart_card.dart';
 import 'package:toast/toast.dart';
 
-class CartView extends StatelessWidget {
+class CartView extends StatefulWidget {
+  _CartView createState() => _CartView();
+}
+
+class _CartView extends State<CartView> {
+  List<Cart> cartItems = new List<Cart>();
+  double totalPrice = 0;
+
   @override
   Widget build(BuildContext context) {
-    double totalPrice = 0;
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         body: Container(
             child: FutureBuilder(
                 future: DBProvider.dbProvider.getAllItemsInCart(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    List<Cart> cartItems = snapshot.data;
+                    cartItems = snapshot.data;
                     totalPrice = cartItems
                         .map((item) => double.parse(item.productPrice))
                         .reduce((value, element) => value + element);

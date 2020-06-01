@@ -22,6 +22,8 @@ class SharedPreference {
       pref.setInt(key, value);
     } else if(value is bool) {
       pref.setBool(key, value);
+    } else if(value is double) {
+      pref.setDouble(key, value);
     }
   }
 
@@ -39,6 +41,12 @@ class SharedPreference {
   Future<int> getIntValue(key) async {
     final pref = await sharedPreference;
     int intValue = pref.getInt(key) ?? 0;
+    return intValue;
+  }
+
+  Future<double> getDoubleValue(key) async {
+    final pref = await sharedPreference;
+    double intValue = pref.getDouble(key) ?? 0;
     return intValue;
   }
 

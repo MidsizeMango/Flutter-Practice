@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Volumes/WORKSPACE/Android Studio Projects/Flutter-Practice/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-eu/values-eu.xml",
+            "outputFile": "D:\\Android Studio Projects\\Flutter-Practice\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu\\values-eu.xml",
             "map": [
                 {
-                    "source": "/Users/prasadshirvandkar/.gradle/caches/transforms-2/files-2.1/3aaf6e5219b7f981ec263df919098c6f/core-1.1.0/res/values-eu/values-eu.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2891",
-                        "endColumns": "100",
-                        "endOffsets": "2987"
-                    }
-                },
-                {
-                    "source": "/Users/prasadshirvandkar/.gradle/caches/transforms-2/files-2.1/9b91c83d4d929b6b9cb98d14671b384d/jetified-play-services-basement-17.0.0/res/values-eu/values.xml",
+                    "source": "C:\\Users\\prasa\\.gradle\\caches\\transforms-2\\files-2.1\\3f7e2e973414fe2db7d94b0207ec401a\\jetified-play-services-basement-17.0.0\\res\\values-eu\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/prasadshirvandkar/.gradle/caches/transforms-2/files-2.1/6eb14f512292913515d869914807ad40/play-services-base-17.1.0/res/values-eu/values.xml",
+                    "source": "C:\\Users\\prasa\\.gradle\\caches\\transforms-2\\files-2.1\\3aaf6e5219b7f981ec263df919098c6f\\core-1.1.0\\res\\values-eu\\values-eu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2891",
+                        "endColumns": "100",
+                        "endOffsets": "2987"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\prasa\\.gradle\\caches\\transforms-2\\files-2.1\\6eb14f512292913515d869914807ad40\\play-services-base-17.1.0\\res\\values-eu\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

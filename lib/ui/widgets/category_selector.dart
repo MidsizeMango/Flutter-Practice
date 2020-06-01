@@ -27,7 +27,7 @@ class _CategorySelector extends State<CategorySelector>
                   duration: Duration(milliseconds: 300),
                   child: AnimatedSize(
                       duration: Duration(milliseconds: 200),
-                      curve: Curves.easeInToLinear,
+                      curve: Curves.linear,
                       vsync: this,
                       child: Text(category,
                           style: TextStyle(

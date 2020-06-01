@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/core/models/cart_model.dart';
 
-class CartCard extends StatelessWidget {
+class CartCard extends StatefulWidget {
   final Cart cartDetails;
   CartCard({@required this.cartDetails});
+  _CartCard createState() => _CartCard();
+}
 
+class _CartCard extends State<CartCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +23,7 @@ class CartCard extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-              tag: cartDetails.cartId,
+              tag: widget.cartDetails.cartId,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.30,
                 height: MediaQuery.of(context).size.height * 0.25,
@@ -38,26 +41,24 @@ class CartCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(cartDetails.productName,
+                  Text(widget.cartDetails.productName,
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontSize: 22,
-                          fontStyle: FontStyle.italic)),
+                          fontSize: 20)),
                   SizedBox(height: 10.0),
                   Text(
-                    '\$${cartDetails.productPrice}',
+                    '\u{20B9} ${widget.cartDetails.productPrice}',
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
-                        fontSize: 22,
+                        fontSize: 20,
                         color: Colors.orangeAccent),
                   ),
                   SizedBox(height: 10.0),
                   Text(
-                    cartDetails.itemCount.toString(),
+                    'Quantity: ${widget.cartDetails.itemCount.toString()}',
                     style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 22,
-                        color: Colors.green),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18),
                   ),
                 ],
               ))

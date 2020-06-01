@@ -9,4 +9,8 @@ class Constants {
   static const String CART_ITEMS = '/cartItems';
   static const String USER_INFO = 'userInfo';
   static const String IS_SIGNED_IN = 'isSignedIn';
+
+  static const String HERO_PRODUCT = 'hero_product';
+  static const String HERO_PRODUCT_NAME= 'hero_product_name';
+  static const String HERO_PRODUCT_PRICE = 'hero_product_price';
 }

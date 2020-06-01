@@ -19,21 +19,19 @@ class _HomeViewState extends State<HomeView> {
     final productProvider = Provider.of<ProductCRUDModel>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Home', style: TextStyle(fontSize: 22.0)),
+          title: Text('Bakes', style: TextStyle(fontSize: 22.0)),
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
             IconButton(
               icon: Icon(Icons.shopping_cart),
-              onPressed: () =>
-                  {Navigator.pushNamed(context, Constants.CART_ITEMS)},
+              onPressed: () => { Navigator.pushNamed(context, Constants.CART_ITEMS) },
             ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.amber.shade800,
             onPressed: () {
-              //Navigator.pushNamed(context, Constants.PRODUCTS);
               showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
@@ -75,20 +73,21 @@ class _HomeViewState extends State<HomeView> {
                                 .map<Product>((doc) =>
                                     Product.fromMap(doc.data, doc.documentID))
                                 .toList();
-                            return ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                physics: BouncingScrollPhysics(),
-                                itemCount: products.length - 1,
-                                itemBuilder: (buildContext, index) =>
-                                  Padding(
+                            return PageView.builder(
+                              itemCount: products.length,
+                              physics: BouncingScrollPhysics(),
+                              controller: PageController(viewportFraction: 0.75),
+                              itemBuilder: (buildContext, index) => 
+                                Padding(
                                     padding: EdgeInsets.only(
-                                      left: 20.0, right: 20.0,
+                                      left: 16.0, right: 16.0,
                                       top: 24.0, bottom: 24.0
                                     ),
                                     child:ProductCard(
                                       productDetails: products[index],
                                       cardNum: index
-                                    )));
+                                    ))
+                            );
                           } else {
                             return Center(
                                 child: CircularProgressIndicator(
@@ -97,7 +96,8 @@ class _HomeViewState extends State<HomeView> {
                             ));
                           }
                         },
-                      ))
+                      )),
+                      
             ])),
         bottomNavigationBar: AnimatedBottomBar(onBarTap: (index) {
           print(index);
